@@ -89,7 +89,7 @@ demo = gr.ChatInterface(
     title="2.1 OAI Agent SDK ReAct + LangFuse Code Interpreter",
     type="messages",
     examples=[
-        "What is the sum of the column `x` in this example_a.csv?",
+        "What column name does cards_data.csv have?",
         "What is the sum of the column `y` in this example_a.csv?",
         "Create a linear best-fit line for the data in example_a.csv.",
     ],

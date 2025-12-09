@@ -1,5 +1,5 @@
 """Code interpreter tool."""
-
+import json
 import os
 from pathlib import Path
 from typing import Sequence
@@ -77,6 +77,18 @@ async def _upload_files(
     )
     return list(remote_paths)
 
+def save_to_db_or_file(result: dict):
+        """Custom persistence hook: Save to DB or file."""
+        # You can adjust this to save to a DB or a file depending on your needs.
+        # In this case, we'll save to a file for demonstration purposes.
+        save_to_file(result)
+
+def save_to_file(result: dict):
+        """Save the execution result to a JSON file."""
+        log_file = "execution_logs.json"
+        with open(log_file, "a") as f:
+            json.dump(result, f)
+            f.write("\n")  # New line to separate entries for easier reading
 
 def _enumerate_files(base_path: str | Path) -> list[Path]:
     """
@@ -161,6 +173,14 @@ class CodeInterpreter:
                     error.to_json()
                 )
 
+            execution_result  = {
+                "code": code,
+                "results": result.logs.to_json(),
+                "stdout": result.logs.stdout,
+                "stderr": result.logs.stderr,
+                "error": error if error else None,
+            }
+            save_to_db_or_file(execution_result)
             return response.model_dump_json()
         finally:
             await sbx.kill()
