@@ -47,7 +47,7 @@ async_openai_client = AsyncOpenAI()
 code_interpreter = CodeInterpreter(
     local_files=[
         Path("sandbox_content/"),
-        Path("tests/tool_tests/example_files/example_a.csv"),
+        Path("tests/tool_tests/example_files/data_b.csv"),
     ]
 )
 
@@ -86,12 +86,12 @@ async def _main(question: str, gr_messages: list[ChatMessage]):
 
 demo = gr.ChatInterface(
     _main,
-    title="2.1 OAI Agent SDK ReAct + LangFuse Code Interpreter",
+    title="OAI Agent SDK ReAct + LangFuse Code Interpreter + Financial Transaction Data",
     type="messages",
     examples=[
-        "What column name does cards_data.csv have?",
-        "What is the sum of the column `y` in this example_a.csv?",
-        "Create a linear best-fit line for the data in example_a.csv.",
+        "Load the data_b.csv file into a data frame. Perform one hot encoding and clean all money columns to double and yes no to binary build a Random Forest Classifier ML model to predict target, do not use clinet_id, card_id, or id as features. train the model on 80 perecent of data and on the other 20 do a validation on the tartget with f1 and the recall on each target type",
+        "Describe the data in data_b.csv",
+        "In the data_b.csv file load as df and count the number of transaction in each state using the merchant state as the location of the transaction",
     ],
 )
 
