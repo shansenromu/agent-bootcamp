@@ -89,12 +89,18 @@ demo = gr.ChatInterface(
     title="OAI Agent SDK ReAct + LangFuse Code Interpreter + Financial Transaction Data",
     type="messages",
     examples=[
-        "Load the data_b.csv file into a data frame. Perform one hot encoding and clean all money columns to double and yes no to binary build a Random Forest Classifier ML model to predict target, do not use clinet_id, card_id, or id as features. train the model on 80 perecent of data and on the other 20 do a validation on the tartget with f1 and the recall on each target type",
         "Describe the data in data_b.csv",
         "In the data_b.csv file load as df and count the number of transaction in each state using the merchant state as the location of the transaction",
+        "In data_b.csv, Create a table for current_age range 50-55, 60-65 etc. and count the occurrences of target = Yes for each range, print it out",
+        "Use the file data_b.csv. In this file load contents to Data frame. Convert column target into binary 0/1, convert any columns with object representing money to float and loop through amount, per_capita_income, yearly_income, total_debt, credit_limit column and perform student t test to compare the means between target = 1 and target = 0 labels. what are the results of the test",
+        "In the data_b.csv file,  use one hot encoding for binary data, calculate the statistical fit of a gaussian for target = no and for target = yes on the transaction amount. Fit and print the amplitude, x offset and sigma of each gaussian with uncertainties.",
+        "Load the data_b.csv file into a data frame. Perform one hot encoding and clean all money columns to double and yes no to binary build a Random Forest Classifier ML model to predict target, do not use clinet_id, card_id, or id as features. train the model on 80 perecent of data and on the other 20 do a validation on the tartget with f1 and the recall on each target type",
+        "Load the data_b.csv file into a data frame. Perform one hot encoding and clean all money columns to double and yes no to binary build  a gradient boosting classifier to predict target, do not use clinet_id, card_id, or id as features. train the model on 80 precent of data and on the other 20 do a validation on the target with f1 and the recall on each target type",
     ],
 )
 
+example = '''' 
 
+'''
 if __name__ == "__main__":
     demo.launch(share=True)
